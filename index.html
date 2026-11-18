@@ -23,15 +23,15 @@
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             color: var(--text-color);
             background-color: #edf2f7;
-            line-height: 1.5;
-            padding: 2rem 1rem;
+            line-height: 1.4;
+            padding: 1rem;
         }
 
         .resume-container {
             max-width: 900px;
             background: #ffffff;
             margin: 0 auto;
-            padding: 2.5rem;
+            padding: 2rem;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
         }
@@ -40,15 +40,15 @@
         header {
             text-align: center;
             border-bottom: 2px solid var(--border-color);
-            padding-bottom: 1.5rem;
-            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            margin-bottom: 1.5rem;
         }
 
         header h1 {
             font-size: 2.25rem;
             color: var(--primary-color);
             letter-spacing: 1px;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.4rem;
         }
 
         .contact-info {
@@ -91,7 +91,7 @@
         }
 
         section {
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
         }
 
         h2 {
@@ -101,7 +101,7 @@
             letter-spacing: 0.5px;
             border-bottom: 2px solid var(--primary-color);
             padding-bottom: 0.3rem;
-            margin-bottom: 1rem;
+            margin-bottom: 0.75rem;
         }
 
         /* Professional Summary */
@@ -111,7 +111,7 @@
 
         /* Work History */
         .job {
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.25rem;
         }
 
         .job-header {
@@ -119,7 +119,7 @@
             justify-content: space-between;
             align-items: baseline;
             flex-wrap: wrap;
-            margin-bottom: 0.25rem;
+            margin-bottom: 0.2rem;
         }
 
         .job-title {
@@ -147,19 +147,19 @@
         }
 
         ul li {
-            margin-bottom: 0.4rem;
+            margin-bottom: 0.3rem;
         }
 
         /* Sidebar Elements */
         .sidebar-section {
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.25rem;
         }
 
         .sidebar-section h3 {
             font-size: 0.95rem;
             color: var(--primary-color);
             text-transform: uppercase;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.4rem;
             border-bottom: 1px solid var(--border-color);
             padding-bottom: 0.2rem;
         }
@@ -171,18 +171,18 @@
 
         .tech-category {
             font-size: 0.85rem;
-            margin-bottom: 0.75rem;
+            margin-bottom: 0.6rem;
         }
 
         .tech-category strong {
             display: block;
             color: #2b6cb0;
-            margin-bottom: 0.2rem;
+            margin-bottom: 0.15rem;
         }
 
         .education-item {
             font-size: 0.9rem;
-            margin-bottom: 0.75rem;
+            margin-bottom: 0.6rem;
         }
 
         .education-item .degree {
@@ -191,6 +191,11 @@
         }
 
         /* Print Styles */
+        @page {
+            size: letter;
+            margin: 0.4in;
+        }
+
         @media print {
             body {
                 background-color: #ffffff;
@@ -206,6 +211,11 @@
             /* Keep the 2-column grid active during print */
             .main-grid {
                 grid-template-columns: 3fr 1fr;
+            }
+            /* Force element to start on a new page */
+            .page-break {
+                break-before: page;
+                page-break-before: always;
             }
         }
     </style>
@@ -303,8 +313,8 @@
                         </ul>
                     </div>
 
-                    <!-- TCS -->
-                    <div class="job">
+                    <!-- TCS - Walmart (with page-break class) -->
+                    <div class="job page-break">
                         <div class="job-header">
                             <div>
                                 <span class="job-title">IT Analyst for Walmart</span>
@@ -387,7 +397,7 @@
                         <strong>Frameworks</strong>
                         Spring Boot (Spring WebMVC, Security, Data, LDAP), Quarkus, JPA, Hibernate, Hibernate Envers, AngularJS, jQuery
                     </div>
-                    <div class="tech-category">
+                    <div class="tech-category page-break">
                         <strong>Testing</strong>
                         JUnit, Mockito, Newman, JMeter, K6
                     </div>
@@ -430,7 +440,7 @@
                 </div>
 
                 <!-- Open Source Contributions -->
-                <div class="sidebar-section">
+                <div class="sidebar-section page-break">
                     <h3>Open-Source</h3>
                     <ul class="sidebar-list">
                         <li>Keycloak</li>
@@ -450,7 +460,7 @@
 
                 <!-- Education -->
                 <div class="sidebar-section">
-                    <h3>Education</h3>
+                    ### Education
                     <div class="education-item">
                         <div class="degree">SASTRA University, India</div>
                         <div style="font-size: 0.85rem; color: #4a5568;">B.Tech in Electronics & Communication Engineering (2012)</div>
