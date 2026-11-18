@@ -6,11 +6,11 @@
     <title>Viswa Teja Nariboina - Resume</title>
     <style>
         :root {
-            --primary-color: #1a365d;
+            --primary-color: #1a202c;
             --text-color: #2d3748;
             --light-bg: #f7fafc;
-            --border-color: #e2e8f0;
-            --accent-color: #3182ce;
+            --border-color: #cbd5e0;
+            --accent-color: #4a5568;
         }
 
         * {
@@ -61,7 +61,8 @@
         }
 
         .contact-info a {
-            color: var(--accent-color);
+            color: var(--primary-color);
+            font-weight: 600;
             text-decoration: none;
         }
 
@@ -175,9 +176,7 @@
         }
 
         .tech-category strong {
-            display: block;
-            color: #2b6cb0;
-            margin-bottom: 0.15rem;
+            color: var(--primary-color);
         }
 
         .education-item {
@@ -212,7 +211,6 @@
             .main-grid {
                 grid-template-columns: 3fr 1fr;
             }
-            /* Force element to start on a new page */
             .page-break {
                 break-before: page;
                 page-break-before: always;
@@ -386,61 +384,48 @@
                     <h3>Technology Summary</h3>
 
                     <div class="tech-category">
-                        <strong>Programming Languages</strong>
-                        Java, JavaScript, HTML5, CSS3
+                        <strong>Programming Languages:</strong> Java, JavaScript, HTML5, CSS3
                     </div>
                     <div class="tech-category">
-                        <strong>AI</strong>
-                        Github Copilot, Claude, OpenCode, Scion, MCP Servers/Clients, Google ADK
+                        <strong>AI:</strong> Github Copilot, Claude, OpenCode, Scion, MCP Servers/Clients, Google ADK
                     </div>
                     <div class="tech-category">
-                        <strong>Frameworks</strong>
-                        Spring Boot (Spring WebMVC, Security, Data, LDAP), Quarkus, JPA, Hibernate, Hibernate Envers, AngularJS, jQuery
-                    </div>
-                    <div class="tech-category page-break">
-                        <strong>Testing</strong>
-                        JUnit, Mockito, Newman, JMeter, K6
+                        <strong>Frameworks:</strong> Spring Boot (Spring WebMVC, Security, Data, LDAP), Quarkus, JPA, Hibernate, Hibernate Envers, AngularJS, jQuery
                     </div>
                     <div class="tech-category">
-                        <strong>Build Tools</strong>
-                        Maven, Webpack, GraalVM Native Image
+                        <strong>Testing:</strong> JUnit, Mockito, Newman, JMeter, K6
                     </div>
                     <div class="tech-category">
-                        <strong>APIs</strong>
-                        REST, SOAP, APISIX Gateway, Apigee
+                        <strong>Build Tools:</strong> Maven, Webpack, GraalVM Native Image
                     </div>
                     <div class="tech-category">
-                        <strong>Databases</strong>
-                        MS SQL Server, DB2, MySQL, MongoDB, Redis, Elastic Search
+                        <strong>APIs:</strong> REST, SOAP, APISIX Gateway, Apigee
                     </div>
                     <div class="tech-category">
-                        <strong>Event Streaming</strong>
-                        Kafka (KSQL/Streams/Connect), Azure Event Hub
+                        <strong>Databases:</strong> MS SQL Server, DB2, MySQL, MongoDB, Redis, Elastic Search
                     </div>
                     <div class="tech-category">
-                        <strong>Cloud Platforms</strong>
-                        Azure, Google Cloud
+                        <strong>Event Streaming:</strong> Kafka (KSQL/Streams/Connect), Azure Event Hub
                     </div>
                     <div class="tech-category">
-                        <strong>CI/CD & DevOps</strong>
-                        Docker, Buildpack, Kubernetes, Helm, Kustomize, Skaffold, Flagger, Azure DevOps, Azure Pipelines, Function Apps, Key Vault, GKE, Google Logging/Bucket Store
+                        <strong>Cloud Platforms:</strong> Azure, Google Cloud
                     </div>
                     <div class="tech-category">
-                        <strong>IDEs & Version Control</strong>
-                        IntelliJ, VS Code, Eclipse, Zed, GIT, SVN
+                        <strong>CI/CD & DevOps:</strong> Docker, Buildpack, Kubernetes, Helm, Kustomize, Skaffold, Flagger, Azure DevOps, Azure Pipelines, Function Apps, Key Vault, GKE, Google Logging/Bucket Store
                     </div>
                     <div class="tech-category">
-                        <strong>Monitoring & Logging</strong>
-                        VisualVM, OpenTelemetry, Dynatrace, ExtraHop, Grafana, Loki, Jaeger, Thanos, Prometheus
+                        <strong>IDEs & Version Control:</strong> IntelliJ, VS Code, Eclipse, Zed, GIT, SVN
                     </div>
                     <div class="tech-category">
-                        <strong>SSO / Auth</strong>
-                        RedHat SSO (Keycloak), CAS Server, AzureAD / EntraID
+                        <strong>Monitoring & Logging:</strong> VisualVM, OpenTelemetry, Dynatrace, ExtraHop, Grafana, Loki, Jaeger, Thanos, Prometheus
+                    </div>
+                    <div class="tech-category">
+                        <strong>SSO / Auth:</strong> RedHat SSO (Keycloak), CAS Server, AzureAD / EntraID
                     </div>
                 </div>
 
                 <!-- Open Source Contributions -->
-                <div class="sidebar-section page-break">
+                <div class="sidebar-section">
                     <h3>Open-Source</h3>
                     <ul class="sidebar-list">
                         <li>Keycloak</li>
@@ -459,7 +444,7 @@
                 </div>
 
                 <!-- Education -->
-                <div class="sidebar-section">
+                <div class="sidebar-section page-break">
                     <h3>Education</h3>
                     <div class="education-item">
                         <div class="degree">SASTRA University, India</div>
