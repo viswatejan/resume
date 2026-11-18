@@ -72,8 +72,13 @@
         /* Layout Grid */
         .main-grid {
             display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 2rem;
+            grid-template-columns: 3fr 1fr;
+            gap: 1rem;
+        }
+
+        .summary-section {
+            grid-column: 1 / -1;
+            margin-bottom: 0.5rem;
         }
 
         @media (max-width: 768px) {
@@ -102,7 +107,6 @@
         /* Professional Summary */
         .summary-content {
             font-size: 0.95rem;
-            margin-bottom: 1.5rem;
         }
 
         /* Work History */
@@ -160,19 +164,9 @@
             padding-bottom: 0.2rem;
         }
 
-        .tag-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.4rem;
+        .sidebar-list {
+            padding-left: 1.1rem;
             font-size: 0.85rem;
-        }
-
-        .tag {
-            background-color: var(--light-bg);
-            border: 1px solid var(--border-color);
-            padding: 0.2rem 0.5rem;
-            border-radius: 4px;
-            color: #2d3748;
         }
 
         .tech-category {
@@ -195,6 +189,25 @@
             font-weight: bold;
             color: var(--primary-color);
         }
+
+        /* Print Styles */
+        @media print {
+            body {
+                background-color: #ffffff;
+                padding: 0;
+            }
+            .resume-container {
+                max-width: 100%;
+                padding: 0;
+                margin: 0;
+                box-shadow: none;
+                border-radius: 0;
+            }
+            /* Keep the 2-column grid active during print */
+            .main-grid {
+                grid-template-columns: 3fr 1fr;
+            }
+        }
     </style>
 </head>
 <body>
@@ -214,21 +227,21 @@
         <!-- Main Grid Layout -->
         <div class="main-grid">
 
-            <!-- Left Column: Summary, Work History, Open Source -->
-            <div class="left-column">
+            <!-- Professional Summary (Full Width on Top) -->
+            <section class="summary-section">
+                <h2>Professional Summary</h2>
+                <div class="summary-content">
+                    <ul style="list-style-type: none; padding-left: 0;">
+                        <li><strong>Experienced Software Engineer:</strong> 14 years of success in designing and developing scalable, fault-tolerant software solutions.</li>
+                        <li><strong>Quality-Focused:</strong> Result-oriented with a strong commitment to delivering high-quality work.</li>
+                        <li><strong>Continuous Learner:</strong> Eager to learn new skills and stay updated with the latest technologies to enhance work quality.</li>
+                        <li><strong>Open-Source Contributor:</strong> Contributed to various open-source projects on GitHub.</li>
+                    </ul>
+                </div>
+            </section>
 
-                <!-- Professional Summary -->
-                <section>
-                    <h2>Professional Summary</h2>
-                    <div class="summary-content">
-                        <ul style="list-style-type: none; padding-left: 0;">
-                            <li><strong>Experienced Software Engineer:</strong> 14 years of success in designing and developing scalable, fault-tolerant software solutions.</li>
-                            <li><strong>Quality-Focused:</strong> Result-oriented with a strong commitment to delivering high-quality work.</li>
-                            <li><strong>Continuous Learner:</strong> Eager to learn new skills and stay updated with the latest technologies to enhance work quality.</li>
-                            <li><strong>Open-Source Contributor:</strong> Contributed to various open-source projects on GitHub.</li>
-                        </ul>
-                    </div>
-                </section>
+            <!-- Left Column (3fr): Work History -->
+            <div class="left-column">
 
                 <!-- Work History -->
                 <section>
@@ -339,23 +352,23 @@
                 </section>
             </div>
 
-            <!-- Right Column: Skills, Tech Summary, Open Source, Certifications, Education -->
+            <!-- Right Column (1fr): Skills, Tech Summary, Open Source, Certifications, Education -->
             <div class="right-column">
 
                 <!-- Skills -->
                 <div class="sidebar-section">
                     <h3>Skills</h3>
-                    <div class="tag-list">
-                        <span class="tag">Software Design & Development</span>
-                        <span class="tag">Agentic Coding</span>
-                        <span class="tag">Analytical Thinking</span>
-                        <span class="tag">Troubleshooting</span>
-                        <span class="tag">Problem Solving</span>
-                        <span class="tag">Continuous Learning</span>
-                        <span class="tag">Mentoring & Training</span>
-                        <span class="tag">Pair Programming</span>
-                        <span class="tag">Code Reviews</span>
-                    </div>
+                    <ul class="sidebar-list">
+                        <li>Software Design & Development</li>
+                        <li>Agentic Coding</li>
+                        <li>Analytical Thinking</li>
+                        <li>Troubleshooting</li>
+                        <li>Problem Solving</li>
+                        <li>Continuous Learning</li>
+                        <li>Mentoring & Training</li>
+                        <li>Pair Programming</li>
+                        <li>Code Reviews</li>
+                    </ul>
                 </div>
 
                 <!-- Technology Summary -->
@@ -419,7 +432,7 @@
                 <!-- Open Source Contributions -->
                 <div class="sidebar-section">
                     <h3>Open-Source</h3>
-                    <ul style="padding-left: 1rem; font-size: 0.85rem;">
+                    <ul class="sidebar-list">
                         <li>Keycloak</li>
                         <li>Apereo CAS</li>
                         <li>Quarkus</li>
@@ -450,6 +463,7 @@
                 </div>
 
             </div>
+
         </div>
     </div>
 
