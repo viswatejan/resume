@@ -8,9 +8,10 @@
         :root {
             --primary-color: #1a202c;
             --text-color: #2d3748;
-            --light-bg: #f7fafc;
+            --muted-color: #718096;
+            --subtext-color: #4a5568;
             --border-color: #cbd5e0;
-            --accent-color: #4a5568;
+            --surface-bg: #f7fafc;
         }
 
         * {
@@ -36,7 +37,7 @@
             border-radius: 8px;
         }
 
-        /* Header Section */
+        /* Header */
         header {
             text-align: center;
             margin-bottom: 1.5rem;
@@ -56,7 +57,7 @@
             flex-wrap: wrap;
             gap: 0.4rem 0.9rem;
             font-size: 0.85rem;
-            color: #4a5568;
+            color: var(--subtext-color);
         }
 
         .contact-item {
@@ -83,18 +84,242 @@
             text-decoration: underline;
         }
 
-        /* Layout Grid */
+        /* Grid Layout */
         .main-grid {
             display: grid;
             grid-template-columns: 3fr 1fr;
-            gap: 1rem;
+            gap: 1.25rem;
         }
 
         .summary-section {
             grid-column: 1 / -1;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.25rem;
         }
 
+        section,
+        .sidebar-section {
+            margin-bottom: 1.35rem;
+        }
+
+        h2,
+        h3 {
+            font-size: 1.05rem;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .section-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.2rem;
+            margin-bottom: 0.75rem;
+            break-inside: avoid;
+            break-after: avoid;
+        }
+
+        .toggle-btn {
+            background: var(--surface-bg);
+            border: 1px solid var(--border-color);
+            color: var(--subtext-color);
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 0.2rem 0.55rem;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .toggle-btn:hover {
+            background: #e2e8f0;
+            color: var(--primary-color);
+        }
+
+        /* Summary */
+        .summary-list {
+            list-style: none;
+            font-size: 0.95rem;
+        }
+
+        .summary-list li {
+            margin-bottom: 0.25rem;
+        }
+
+        /* Shared Metadata Typography */
+        .company-tenure,
+        .job-date,
+        .education-meta {
+            font-size: 0.85rem;
+            color: var(--muted-color);
+        }
+
+        .company-tenure,
+        .job-date {
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        /* Company & Self-Adjusting Grid Timeline */
+        .company-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .company-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 0.75rem;
+            margin-bottom: 0.65rem;
+            break-inside: avoid;
+            break-after: avoid;
+        }
+
+        .company-name {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .company-tenure {
+            font-weight: 600;
+        }
+
+        .job-date {
+            font-style: italic;
+        }
+
+        .timeline-role {
+            display: grid;
+            grid-template-columns: 14px minmax(0, 1fr);
+            column-gap: 0.55rem;
+            margin-left: 0.15rem;
+        }
+
+        .timeline-track {
+            position: relative;
+            width: 14px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .timeline-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            margin-top: 0.42rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .timeline-role:not(:last-child) .timeline-track::after {
+            content: '';
+            position: absolute;
+            top: 0.42rem;
+            bottom: -0.42rem;
+            left: 6px;
+            width: 2px;
+            background-color: var(--border-color);
+        }
+
+        .timeline-content {
+            padding-bottom: 1.1rem;
+        }
+
+        .timeline-role:last-child .timeline-content {
+            padding-bottom: 0;
+        }
+
+        .role-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 0.5rem;
+            margin-bottom: 0.25rem;
+            cursor: pointer;
+            break-inside: avoid;
+            break-after: avoid;
+        }
+
+        .role-title-wrap {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .job-title {
+            font-weight: 700;
+            color: var(--primary-color);
+            font-size: 0.96rem;
+        }
+
+        .role-chevron {
+            font-size: 0.65rem;
+            color: var(--muted-color);
+            transition: transform 0.15s ease;
+            user-select: none;
+        }
+
+        .timeline-role.collapsed .role-chevron {
+            transform: rotate(-90deg);
+        }
+
+        .role-details {
+            padding-left: 1.15rem;
+            font-size: 0.9rem;
+        }
+
+        .role-details li {
+            margin-bottom: 0.3rem;
+            break-inside: avoid;
+        }
+
+        .timeline-role.collapsed .role-details {
+            display: none;
+        }
+
+        /* Sidebar */
+        .sidebar-list,
+        .tech-category,
+        .education-item {
+            font-size: 0.85rem;
+        }
+
+        .sidebar-list {
+            padding-left: 1.1rem;
+        }
+
+        .sidebar-list li {
+            margin-bottom: 0.25rem;
+        }
+
+        .tech-category {
+            margin-bottom: 0.55rem;
+        }
+
+        .tech-category strong,
+        .education-item .degree {
+            color: var(--primary-color);
+        }
+
+        .education-item .degree {
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+
+        .education-meta {
+            color: var(--subtext-color);
+            margin-top: 0.1rem;
+        }
+
+        .education-item ul {
+            font-size: 0.8rem;
+            padding-left: 1.1rem;
+            margin-top: 0.3rem;
+        }
+
+        /* Responsive & Print */
         @media (max-width: 768px) {
             .main-grid {
                 grid-template-columns: 1fr;
@@ -104,96 +329,6 @@
             }
         }
 
-        section {
-            margin-bottom: 1.5rem;
-        }
-
-        h2, .sidebar-section h3 {
-            font-size: 1.05rem;
-            color: var(--primary-color);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 0.2rem;
-            margin-bottom: 0.75rem;
-        }
-
-        /* Professional Summary */
-        .summary-content {
-            font-size: 0.95rem;
-        }
-
-        /* Work History */
-        .job {
-            margin-bottom: 1.25rem;
-        }
-
-        .job-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            flex-wrap: wrap;
-            margin-bottom: 0.2rem;
-        }
-
-        .job-title {
-            font-weight: bold;
-            color: var(--primary-color);
-            font-size: 1rem;
-        }
-
-        .job-company {
-            font-size: 0.9rem;
-            color: #4a5568;
-            font-weight: 600;
-        }
-
-        .job-date {
-            font-size: 0.85rem;
-            color: #718096;
-            font-style: italic;
-        }
-
-        ul {
-            list-style-type: disc;
-            padding-left: 1.25rem;
-            font-size: 0.9rem;
-        }
-
-        ul li {
-            margin-bottom: 0.3rem;
-        }
-
-        /* Sidebar Elements */
-        .sidebar-section {
-            margin-bottom: 1.25rem;
-        }
-
-        .sidebar-list {
-            padding-left: 1.1rem;
-            font-size: 0.85rem;
-        }
-
-        .tech-category {
-            font-size: 0.85rem;
-            margin-bottom: 0.6rem;
-        }
-
-        .tech-category strong {
-            color: var(--primary-color);
-        }
-
-        .education-item {
-            font-size: 0.9rem;
-            margin-bottom: 0.6rem;
-        }
-
-        .education-item .degree {
-            font-weight: bold;
-            color: var(--primary-color);
-        }
-
-        /* Print Styles */
         @page {
             size: letter;
             margin: 0.4in;
@@ -201,23 +336,49 @@
 
         @media print {
             body {
-                background-color: #ffffff;
+                background: #ffffff;
                 padding: 0;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
             }
             .resume-container {
                 max-width: 100%;
                 padding: 0;
-                margin: 0;
                 box-shadow: none;
                 border-radius: 0;
             }
-            /* Keep the 2-column grid active during print */
             .main-grid {
-                grid-template-columns: 3fr 1fr;
+                display: flex;
+                flex-wrap: wrap;
+                align-items: flex-start;
+                gap: 1.25rem;
+            }
+            .summary-section {
+                width: 100%;
+            }
+            .left-column {
+                flex: 3;
+                min-width: 0;
+            }
+            .right-column {
+                flex: 1;
+                min-width: 0;
             }
             .page-break {
                 break-before: page;
-                page-break-before: always;
+            }
+            .tech-category,
+            .education-item,
+            .company-header,
+            .role-header {
+                break-inside: avoid;
+            }
+            .toggle-btn,
+            .role-chevron {
+                display: none !important;
+            }
+            .role-title-wrap {
+                gap: 0;
             }
         }
     </style>
@@ -225,7 +386,6 @@
 <body>
 
     <div class="resume-container">
-        <!-- Header -->
         <header>
             <h1>VISWA TEJA NARIBOINA</h1>
             <div class="contact-info">
@@ -258,140 +418,166 @@
             </div>
         </header>
 
-        <!-- Main Grid Layout -->
         <div class="main-grid">
-
-            <!-- Professional Summary (Full Width on Top) -->
             <section class="summary-section">
-                <h2>Professional Summary</h2>
-                <div class="summary-content">
-                    <ul style="list-style-type: none; padding-left: 0;">
-                        <li><strong>Experienced Software Engineer:</strong> 14 years of success in designing and developing scalable, fault-tolerant software solutions.</li>
-                        <li><strong>Quality-Focused:</strong> Result-oriented with a strong commitment to delivering high-quality work.</li>
-                        <li><strong>Continuous Learner:</strong> Eager to learn new skills and stay updated with the latest technologies to enhance work quality.</li>
-                        <li><strong>Open-Source Contributor:</strong> Contributed to various open-source projects on GitHub.</li>
-                    </ul>
-                </div>
+                <div class="section-heading"><h2>Professional Summary</h2></div>
+                <ul class="summary-list">
+                    <li><strong>Experienced Software Engineer:</strong> 14 years of success in designing and developing scalable, fault-tolerant software solutions.</li>
+                    <li><strong>Quality-Focused:</strong> Result-oriented with a strong commitment to delivering high-quality work.</li>
+                    <li><strong>Continuous Learner:</strong> Eager to learn new skills and stay updated with the latest technologies to enhance work quality.</li>
+                    <li><strong>Open-Source Contributor:</strong> Contributed to various open-source projects on GitHub.</li>
+                </ul>
             </section>
 
-            <!-- Left Column (3fr): Work History -->
             <div class="left-column">
-
-                <!-- Work History -->
                 <section>
-                    <h2>Work History</h2>
-
-                    <!-- J.B. Hunt -->
-                    <div class="job">
-                        <div class="job-header">
-                            <div>
-                                <span class="job-title">Expert Software Engineer</span>
-                                <div class="job-company">J.B. Hunt Transport Services, Inc.</div>
-                            </div>
-                            <span class="job-date">02/2021 - Present</span>
-                        </div>
-                        <ul>
-                            <li><strong>Leadership & Mentorship:</strong> Led and technically mentored three development teams, fostering a collaborative and innovative environment.</li>
-                            <li><strong>Architectural Design:</strong> Applied Domain Driven Design principles to architect and develop a CQRS-based, scalable, and highly available multi-tenant access management system, Security360. Implemented fine-grained access control (Role & Attribute Based Access Control) to secure web applications and services.</li>
-                            <li><strong>Product Development:</strong> Designed and developed multiple web services, cron jobs, and event/stream processing applications integral to Security360.</li>
-                            <li><strong>Performance Optimization:</strong> Converted the authorization service to a native application using GraalVM, reducing startup time from 8 seconds to under 500 milliseconds, significantly enhancing scalability and memory efficiency.</li>
-                            <li><strong>Agentic AI:</strong> Developed an MCP server that enhances GitHub Copilot with custom tools and resources, enabling teams to seamlessly integrate their Java applications with Security360. Contributed to reference implementations using Google ADK. Applied industry best practices to strengthen the security posture of MCP servers. Designed a zero-trust scalable architecture capable of interacting with third-party agents and MCP servers secured by a variety of identity providers. Developed a container-based sandbox environment for agentic coding to use with autopilot/YOLO mode.</li>
-                            <li><strong>Auditing & Reporting:</strong> Implemented comprehensive auditing and reporting capabilities for Security360 using Hibernate Envers.</li>
-                            <li><strong>Library Development:</strong> Developed Spring Boot auto-configuration and Quarkus extension libraries to streamline the integration of Security360 with web applications and services.</li>
-                            <li><strong>Award:</strong> One in a Million Miler Excellence Award - recognized for exceptional long-term commitment, reliability, and sustained high performance.</li>
-                        </ul>
+                    <div class="section-heading">
+                        <h2>Work History</h2>
+                        <button type="button" class="toggle-btn" id="toggleAllBtn" onclick="toggleAllDetails()">Hide Details</button>
                     </div>
 
-                    <div class="job">
-                        <div class="job-header">
-                            <div>
-                                <span class="job-title">Senior Software Engineer</span>
-                                <div class="job-company">J.B. Hunt Transport Services, Inc.</div>
-                            </div>
-                            <span class="job-date">06/2019 - 01/2021</span>
+                    <div class="company-group">
+                        <div class="company-header">
+                            <span class="company-name">J.B. Hunt Transport Services, Inc.</span>
+                            <span class="company-tenure">03/2017 - Present</span>
                         </div>
-                        <ul>
-                            <li><strong>Leadership & Mentorship:</strong> Assisted and mentored the team, enhancing their skills and productivity.</li>
-                            <li><strong>Security Expertise:</strong> Acted as the go-to person for application security issues across the company, providing solutions and troubleshooting.</li>
-                            <li><strong>IAM Analysis & Implementation:</strong> Reviewed and analyzed access requirements with IAM providers like Okta, Azure AD, and Keycloak. Selected and implemented the commercial version of Keycloak (RedHat SSO) with paid support from Red Hat.</li>
-                            <li><strong>Development & Customizations:</strong> Customized RedHat SSO login themes and developed custom implementations for various SPIs to tailor authentication flows. Created CI/CD pipelines using Azure DevOps for deploying these customizations.</li>
-                            <li><strong>SSO Migration:</strong> Successfully migrated SSO for Shipper360 and Carrier360 from CAS to RedHat SSO.</li>
-                        </ul>
+
+                        <div class="roles-timeline">
+                            <div class="timeline-role">
+                                <div class="timeline-track"><span class="timeline-dot"></span></div>
+                                <div class="timeline-content">
+                                    <div class="role-header" onclick="toggleRole(this)">
+                                        <span class="role-title-wrap">
+                                            <span class="role-chevron">▼</span>
+                                            <span class="job-title">Expert Software Engineer</span>
+                                        </span>
+                                        <span class="job-date">02/2021 - Present</span>
+                                    </div>
+                                    <ul class="role-details">
+                                        <li><strong>Leadership & Mentorship:</strong> Led and technically mentored three development teams, fostering a collaborative and innovative environment.</li>
+                                        <li><strong>Architectural Design:</strong> Applied Domain Driven Design principles to architect and develop a CQRS-based, scalable, and highly available multi-tenant access management system, Security360. Implemented fine-grained access control (Role & Attribute Based Access Control) to secure web applications and services.</li>
+                                        <li><strong>Product Development:</strong> Designed and developed multiple web services, cron jobs, and event/stream processing applications integral to Security360.</li>
+                                        <li><strong>Performance Optimization:</strong> Converted the authorization service to a native application using GraalVM, reducing startup time from 8 seconds to under 500 milliseconds, significantly enhancing scalability and memory efficiency.</li>
+                                        <li><strong>Agentic AI:</strong> Developed an MCP server that enhances GitHub Copilot with custom tools and resources, enabling teams to seamlessly integrate their Java applications with Security360. Contributed to reference implementations using Google ADK. Applied industry best practices to strengthen the security posture of MCP servers. Designed a zero-trust scalable architecture capable of interacting with third-party agents and MCP servers secured by a variety of identity providers. Developed a container-based sandbox environment for agentic coding to use with autopilot/YOLO mode.</li>
+                                        <li><strong>Auditing & Reporting:</strong> Implemented comprehensive auditing and reporting capabilities for Security360 using Hibernate Envers.</li>
+                                        <li><strong>Library Development:</strong> Developed Spring Boot auto-configuration and Quarkus extension libraries to streamline the integration of Security360 with web applications and services.</li>
+                                        <li><strong>Award:</strong> One in a Million Miler Excellence Award - recognized for exceptional long-term commitment, reliability, and sustained high performance.</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="timeline-role">
+                                <div class="timeline-track"><span class="timeline-dot"></span></div>
+                                <div class="timeline-content">
+                                    <div class="role-header" onclick="toggleRole(this)">
+                                        <span class="role-title-wrap">
+                                            <span class="role-chevron">▼</span>
+                                            <span class="job-title">Senior Software Engineer</span>
+                                        </span>
+                                        <span class="job-date">06/2019 - 01/2021</span>
+                                    </div>
+                                    <ul class="role-details">
+                                        <li><strong>Leadership & Mentorship:</strong> Assisted and mentored the team, enhancing their skills and productivity.</li>
+                                        <li><strong>Security Expertise:</strong> Acted as the go-to person for application security issues across the company, providing solutions and troubleshooting.</li>
+                                        <li><strong>IAM Analysis & Implementation:</strong> Reviewed and analyzed access requirements with IAM providers like Okta, Azure AD, and Keycloak. Selected and implemented the commercial version of Keycloak (RedHat SSO) with paid support from Red Hat.</li>
+                                        <li><strong>Development & Customizations:</strong> Customized RedHat SSO login themes and developed custom implementations for various SPIs to tailor authentication flows. Created CI/CD pipelines using Azure DevOps for deploying these customizations.</li>
+                                        <li><strong>SSO Migration:</strong> Successfully migrated SSO for Shipper360 and Carrier360 from CAS to RedHat SSO.</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="timeline-role">
+                                <div class="timeline-track"><span class="timeline-dot"></span></div>
+                                <div class="timeline-content">
+                                    <div class="role-header" onclick="toggleRole(this)">
+                                        <span class="role-title-wrap">
+                                            <span class="role-chevron">▼</span>
+                                            <span class="job-title">Software Engineer</span>
+                                        </span>
+                                        <span class="job-date">03/2017 - 06/2019</span>
+                                    </div>
+                                    <ul class="role-details">
+                                        <li><strong>SSO Upgrade:</strong> Upgraded the legacy Central Authentication Server (CAS) used by all company applications.</li>
+                                        <li><strong>OAuth2 Development:</strong> Developed an OAuth2 Authorization Server using Spring OAuth2, with authentication delegated to CAS for backward compatibility. Created an administration portal for registering OAuth2 clients.</li>
+                                        <li><strong>API Management:</strong> Developed and exposed multi-tenant B2B APIs through Azure API Management (APIM), delegating APIM Developer Portal authentication to CAS.</li>
+                                        <li><strong>Resiliency Enhancement:</strong> Improved the resiliency of in-house and legacy authorization services (Role-Based Access Control) by deploying to Kubernetes with auto-scaling and failover to a cloud-hosted read-only database, constantly replicated from the on-premises primary database.</li>
+                                        <li><strong>White Label Solution:</strong> Developed a white label solution for customer end-user onboarding, including account registration, email verification, and password reset functionality. Created a listener to precompute authorization based on user attributes and resources.</li>
+                                        <li><strong>Spring Boot Libraries:</strong> Developed several Spring Boot auto-configure libraries on top of Spring Security to configure SSO for web applications and authentication and authorization for web services.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="job">
-                        <div class="job-header">
-                            <div>
-                                <span class="job-title">Software Engineer</span>
-                                <div class="job-company">J.B. Hunt Transport Services, Inc.</div>
-                            </div>
-                            <span class="job-date">03/2017 - 06/2019</span>
+                    <div class="company-group page-break">
+                        <div class="company-header">
+                            <span class="company-name">Tata Consultancy Services Ltd.</span>
+                            <span class="company-tenure">07/2012 - 03/2017</span>
                         </div>
-                        <ul>
-                            <li><strong>SSO Upgrade:</strong> Upgraded the legacy Central Authentication Server (CAS) used by all company applications.</li>
-                            <li><strong>OAuth2 Development:</strong> Developed an OAuth2 Authorization Server using Spring OAuth2, with authentication delegated to CAS for backward compatibility. Created an administration portal for registering OAuth2 clients.</li>
-                            <li><strong>API Management:</strong> Developed and exposed multi-tenant B2B APIs through Azure API Management (APIM), delegating APIM Developer Portal authentication to CAS.</li>
-                            <li><strong>Resiliency Enhancement:</strong> Improved the resiliency of in-house and legacy authorization services (Role-Based Access Control) by deploying to Kubernetes with auto-scaling and failover to a cloud-hosted read-only database, constantly replicated from the on-premises primary database.</li>
-                            <li><strong>White Label Solution:</strong> Developed a white label solution for customer end-user onboarding, including account registration, email verification, and password reset functionality. Created a listener to precompute authorization based on user attributes and resources.</li>
-                            <li><strong>Spring Boot Libraries:</strong> Developed several Spring Boot auto-configure libraries on top of Spring Security to configure SSO for web applications and authentication and authorization for web services.</li>
-                        </ul>
-                    </div>
 
-                    <!-- TCS - Walmart (with page-break class) -->
-                    <div class="job page-break">
-                        <div class="job-header">
-                            <div>
-                                <span class="job-title">IT Analyst for Walmart</span>
-                                <div class="job-company">Tata Consultancy Services Ltd.</div>
+                        <div class="roles-timeline">
+                            <div class="timeline-role">
+                                <div class="timeline-track"><span class="timeline-dot"></span></div>
+                                <div class="timeline-content">
+                                    <div class="role-header" onclick="toggleRole(this)">
+                                        <span class="role-title-wrap">
+                                            <span class="role-chevron">▼</span>
+                                            <span class="job-title">IT Analyst for Walmart</span>
+                                        </span>
+                                        <span class="job-date">07/2015 - 03/2017</span>
+                                    </div>
+                                    <ul class="role-details">
+                                        <li><strong>Project Leadership:</strong> Led the development of an in-house pricing application for Walmart stores.</li>
+                                        <li><strong>Application Development:</strong> Designed and built the Pricing Scenario Planner from the ground up using AngularJS.</li>
+                                        <li><strong>Custom Module Creation:</strong> Developed a custom ng-repeat Angular module to efficiently manage data binding with large datasets.</li>
+                                        <li><strong>Domain Knowledge:</strong> Enhanced pricing domain knowledge through direct coordination with business stakeholders, clients, and technical architects during requirement analysis and design.</li>
+                                    </ul>
+                                </div>
                             </div>
-                            <span class="job-date">07/2015 - 03/2017</span>
-                        </div>
-                        <ul>
-                            <li><strong>Project Leadership:</strong> Led the development of an in-house pricing application for Walmart stores.</li>
-                            <li><strong>Application Development:</strong> Designed and built the Pricing Scenario Planner from the ground up using AngularJS.</li>
-                            <li><strong>Custom Module Creation:</strong> Developed a custom ng-repeat Angular module to efficiently manage data binding with large datasets.</li>
-                            <li><strong>Domain Knowledge:</strong> Enhanced pricing domain knowledge through direct coordination with business stakeholders, clients, and technical architects during requirement analysis and design.</li>
-                        </ul>
-                    </div>
 
-                    <div class="job">
-                        <div class="job-header">
-                            <div>
-                                <span class="job-title">Systems Engineer for Staples</span>
-                                <div class="job-company">Tata Consultancy Services Ltd.</div>
+                            <div class="timeline-role">
+                                <div class="timeline-track"><span class="timeline-dot"></span></div>
+                                <div class="timeline-content">
+                                    <div class="role-header" onclick="toggleRole(this)">
+                                        <span class="role-title-wrap">
+                                            <span class="role-chevron">▼</span>
+                                            <span class="job-title">Systems Engineer for Staples</span>
+                                        </span>
+                                        <span class="job-date">01/2015 - 06/2015</span>
+                                    </div>
+                                    <ul class="role-details">
+                                        <li><strong>Landing Page Enhancements:</strong> Enhanced the Landing Page of Staples e-commerce sites, including home, product description, daily deals, profile, and shopping cart pages.</li>
+                                        <li><strong>API Development:</strong> Developed product and category details APIs consumed by Staples' m-commerce and mobile applications.</li>
+                                        <li><strong>Recognition:</strong> Earned an early promotion to IT Analyst by consistently delivering high performance.</li>
+                                    </ul>
+                                </div>
                             </div>
-                            <span class="job-date">01/2015 - 06/2015</span>
-                        </div>
-                        <ul>
-                            <li><strong>Landing Page Enhancements:</strong> Enhanced the Landing Page of Staples e-commerce sites, including home, product description, daily deals, profile, and shopping cart pages.</li>
-                            <li><strong>API Development:</strong> Developed product and category details APIs consumed by Staples' m-commerce and mobile applications.</li>
-                            <li><strong>Recognition:</strong> Earned an early promotion to IT Analyst by consistently delivering high performance.</li>
-                        </ul>
-                    </div>
 
-                    <div class="job">
-                        <div class="job-header">
-                            <div>
-                                <span class="job-title">Systems Engineer (Retail Innovation Labs)</span>
-                                <div class="job-company">Tata Consultancy Services Ltd.</div>
+                            <div class="timeline-role">
+                                <div class="timeline-track"><span class="timeline-dot"></span></div>
+                                <div class="timeline-content">
+                                    <div class="role-header" onclick="toggleRole(this)">
+                                        <span class="role-title-wrap">
+                                            <span class="role-chevron">▼</span>
+                                            <span class="job-title">Systems Engineer (Retail Innovation Labs)</span>
+                                        </span>
+                                        <span class="job-date">07/2012 - 12/2014</span>
+                                    </div>
+                                    <ul class="role-details">
+                                        <li><strong>Innovative Solutions:</strong> Designed and developed innovative solutions and proof of concepts for retail challenges, demonstrating them to multiple retailers.</li>
+                                        <li><strong>Algorithm Design:</strong> Designed an algorithm for measuring apparel fit in less than 3 seconds using Microsoft Kinect, and filed a patent titled <em>"Method and System for Virtual Fitting of User Apparels."</em></li>
+                                        <li><strong>Presentations:</strong> Presented retail solutions at the Retail Summit 2014 in TCS Japan.</li>
+                                    </ul>
+                                </div>
                             </div>
-                            <span class="job-date">07/2012 - 12/2014</span>
                         </div>
-                        <ul>
-                            <li><strong>Innovative Solutions:</strong> Designed and developed innovative solutions and proof of concepts for retail challenges, demonstrating them to multiple retailers.</li>
-                            <li><strong>Algorithm Design:</strong> Designed an algorithm for measuring apparel fit in less than 3 seconds using Microsoft Kinect, and filed a patent titled <em>"Method and System for Virtual Fitting of User Apparels."</em></li>
-                            <li><strong>Presentations:</strong> Presented retail solutions at the Retail Summit 2014 in TCS Japan.</li>
-                        </ul>
                     </div>
                 </section>
             </div>
 
-            <!-- Right Column (1fr): Skills, Tech Summary, Open Source, Certifications, Education -->
             <div class="right-column">
-
-                <!-- Skills -->
                 <div class="sidebar-section">
-                    <h3>Skills</h3>
+                    <div class="section-heading"><h3>Skills</h3></div>
                     <ul class="sidebar-list">
                         <li>Software Design & Development</li>
                         <li>Agentic Coding</li>
@@ -405,54 +591,25 @@
                     </ul>
                 </div>
 
-                <!-- Technology Summary -->
                 <div class="sidebar-section">
-                    <h3>Technology Summary</h3>
-
-                    <div class="tech-category">
-                        <strong>Programming Languages:</strong> Java, JavaScript, HTML5, CSS3
-                    </div>
-                    <div class="tech-category">
-                        <strong>AI:</strong> Github Copilot, Claude, OpenCode, Scion, MCP Servers/Clients, Google ADK
-                    </div>
-                    <div class="tech-category">
-                        <strong>Frameworks:</strong> Spring Boot (Spring WebMVC, Security, Data, LDAP), Quarkus, JPA, Hibernate, Hibernate Envers, AngularJS, jQuery
-                    </div>
-                    <div class="tech-category">
-                        <strong>Testing:</strong> JUnit, Mockito, Newman, JMeter, K6
-                    </div>
-                    <div class="tech-category">
-                        <strong>Build Tools:</strong> Maven, Webpack, GraalVM Native Image
-                    </div>
-                    <div class="tech-category">
-                        <strong>APIs:</strong> REST, SOAP, APISIX Gateway, Apigee
-                    </div>
-                    <div class="tech-category">
-                        <strong>Databases:</strong> MS SQL Server, DB2, MySQL, MongoDB, Redis, Elastic Search
-                    </div>
-                    <div class="tech-category">
-                        <strong>Event Streaming:</strong> Kafka (KSQL/Streams/Connect), Azure Event Hub
-                    </div>
-                    <div class="tech-category">
-                        <strong>Cloud Platforms:</strong> Azure, Google Cloud
-                    </div>
-                    <div class="tech-category">
-                        <strong>CI/CD & DevOps:</strong> Docker, Buildpack, Kubernetes, Helm, Kustomize, Skaffold, Flagger, Azure DevOps, Azure Pipelines, Function Apps, Key Vault, GKE, Google Logging/Bucket Store
-                    </div>
-                    <div class="tech-category">
-                        <strong>IDEs & Version Control:</strong> IntelliJ, VS Code, Eclipse, Zed, GIT, SVN
-                    </div>
-                    <div class="tech-category">
-                        <strong>Monitoring & Logging:</strong> VisualVM, OpenTelemetry, Dynatrace, ExtraHop, Grafana, Loki, Jaeger, Thanos, Prometheus
-                    </div>
-                    <div class="tech-category">
-                        <strong>SSO / Auth:</strong> RedHat SSO (Keycloak), CAS Server, AzureAD / EntraID
-                    </div>
+                    <div class="section-heading"><h3>Technology Summary</h3></div>
+                    <div class="tech-category"><strong>Programming Languages:</strong> Java, JavaScript, HTML5, CSS3</div>
+                    <div class="tech-category"><strong>AI:</strong> Github Copilot, Claude, OpenCode, Scion, MCP Servers/Clients, Google ADK</div>
+                    <div class="tech-category"><strong>Frameworks:</strong> Spring Boot (Spring WebMVC, Security, Data, LDAP), Quarkus, JPA, Hibernate, Hibernate Envers, AngularJS, jQuery</div>
+                    <div class="tech-category"><strong>Testing:</strong> JUnit, Mockito, Newman, JMeter, K6</div>
+                    <div class="tech-category"><strong>Build Tools:</strong> Maven, Webpack, GraalVM Native Image</div>
+                    <div class="tech-category"><strong>APIs:</strong> REST, SOAP, APISIX Gateway, Apigee</div>
+                    <div class="tech-category"><strong>Databases:</strong> MS SQL Server, DB2, MySQL, MongoDB, Redis, Elastic Search</div>
+                    <div class="tech-category"><strong>Event Streaming:</strong> Kafka (KSQL/Streams/Connect), Azure Event Hub</div>
+                    <div class="tech-category"><strong>Cloud Platforms:</strong> Azure, Google Cloud</div>
+                    <div class="tech-category"><strong>CI/CD & DevOps:</strong> Docker, Buildpack, Kubernetes, Helm, Kustomize, Skaffold, Flagger, Azure DevOps, Azure Pipelines, Function Apps, Key Vault, GKE, Google Logging/Bucket Store</div>
+                    <div class="tech-category"><strong>IDEs & Version Control:</strong> IntelliJ, VS Code, Eclipse, Zed, GIT, SVN</div>
+                    <div class="tech-category"><strong>Monitoring & Logging:</strong> VisualVM, OpenTelemetry, Dynatrace, ExtraHop, Grafana, Loki, Jaeger, Thanos, Prometheus</div>
+                    <div class="tech-category"><strong>SSO / Auth:</strong> RedHat SSO (Keycloak), CAS Server, AzureAD / EntraID</div>
                 </div>
 
-                <!-- Open Source Contributions -->
                 <div class="sidebar-section">
-                    <h3>Open-Source</h3>
+                    <div class="section-heading"><h3>Open-Source</h3></div>
                     <ul class="sidebar-list">
                         <li>Keycloak</li>
                         <li>Apereo CAS</li>
@@ -460,33 +617,53 @@
                     </ul>
                 </div>
 
-                <!-- Certifications -->
                 <div class="sidebar-section">
-                    <h3>Certifications</h3>
-                    <div class="education-item" style="font-size: 0.85rem;">
+                    <div class="section-heading"><h3>Certifications</h3></div>
+                    <div class="education-item">
                         <strong>Microsoft</strong><br>
                         Programming in HTML5 with JavaScript and CSS3
                     </div>
                 </div>
 
-                <!-- Education -->
-                <div class="sidebar-section page-break">
-                    <h3>Education</h3>
+                <div class="sidebar-section">
+                    <div class="section-heading"><h3>Education</h3></div>
                     <div class="education-item">
                         <div class="degree">SASTRA University, India</div>
-                        <div style="font-size: 0.85rem; color: #4a5568;">B.Tech in Electronics & Communication Engineering (2012)</div>
-                        <ul style="font-size: 0.8rem; margin-top: 0.3rem;">
+                        <div class="education-meta">B.Tech in Electronics & Communication Engineering (2012)</div>
+                        <ul>
                             <li>9.11 GPA</li>
                             <li>Dean's Lister</li>
                             <li>Recipient of University and Central Government Scholarship</li>
                         </ul>
                     </div>
                 </div>
-
             </div>
-
         </div>
     </div>
+
+    <script>
+        function toggleRole(headerEl) {
+            headerEl.closest('.timeline-role').classList.toggle('collapsed');
+            syncGlobalButton();
+        }
+
+        function toggleAllDetails() {
+            const roles = document.querySelectorAll('.timeline-role');
+            const shouldCollapse = Array.from(roles).some(r => !r.classList.contains('collapsed'));
+            roles.forEach(r => r.classList.toggle('collapsed', shouldCollapse));
+            setGlobalButtonLabel(!shouldCollapse);
+        }
+
+        function syncGlobalButton() {
+            const anyExpanded = Array.from(document.querySelectorAll('.timeline-role'))
+                .some(r => !r.classList.contains('collapsed'));
+            setGlobalButtonLabel(anyExpanded);
+        }
+
+        function setGlobalButtonLabel(anyExpanded) {
+            document.getElementById('toggleAllBtn').textContent = anyExpanded ? 'Hide Details' : 'Show Details';
+        }
+    </script>
 
 </body>
 </html>
