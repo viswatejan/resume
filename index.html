@@ -87,7 +87,7 @@
         /* Grid Layout */
         .main-grid {
             display: grid;
-            grid-template-columns: 3fr 1fr;
+            grid-template-columns: 1fr 3fr;
             gap: 1.25rem;
         }
 
@@ -357,11 +357,11 @@
                 width: 100%;
             }
             .left-column {
-                flex: 3;
+                flex: 1;
                 min-width: 0;
             }
             .right-column {
-                flex: 1;
+                flex: 3;
                 min-width: 0;
             }
             .page-break {
@@ -430,6 +430,70 @@
             </section>
 
             <div class="left-column">
+                <div class="sidebar-section">
+                    <div class="section-heading"><h3>Skills</h3></div>
+                    <ul class="sidebar-list">
+                        <li>Software Design & Development</li>
+                        <li>Agentic Coding</li>
+                        <li>Analytical Thinking</li>
+                        <li>Troubleshooting</li>
+                        <li>Problem Solving</li>
+                        <li>Continuous Learning</li>
+                        <li>Mentoring & Training</li>
+                        <li>Pair Programming</li>
+                        <li>Code Reviews</li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-section">
+                    <div class="section-heading"><h3>Technology Summary</h3></div>
+                    <div class="tech-category"><strong>Programming Languages:</strong> Java, JavaScript, HTML5, CSS3</div>
+                    <div class="tech-category"><strong>AI:</strong> Github Copilot, Claude, OpenCode, Scion, MCP Servers/Clients, Google ADK</div>
+                    <div class="tech-category"><strong>Frameworks:</strong> Spring Boot (Spring WebMVC, Security, Data, LDAP), Quarkus, JPA, Hibernate, Hibernate Envers, AngularJS, jQuery</div>
+                    <div class="tech-category"><strong>Testing:</strong> JUnit, Mockito, Newman, JMeter, K6</div>
+                    <div class="tech-category"><strong>Build Tools:</strong> Maven, Webpack, GraalVM Native Image</div>
+                    <div class="tech-category"><strong>APIs:</strong> REST, SOAP, APISIX Gateway, Apigee</div>
+                    <div class="tech-category"><strong>Databases:</strong> MS SQL Server, DB2, MySQL, MongoDB, Redis, Elastic Search</div>
+                    <div class="tech-category"><strong>Event Streaming:</strong> Kafka (KSQL/Streams/Connect), Azure Event Hub</div>
+                    <div class="tech-category"><strong>Cloud Platforms:</strong> Azure, Google Cloud</div>
+                    <div class="tech-category"><strong>CI/CD & DevOps:</strong> Docker, Buildpack, Kubernetes, Helm, Kustomize, Skaffold, Flagger, Azure DevOps, Azure Pipelines, Function Apps, Key Vault, GKE, Google Logging/Bucket Store</div>
+                    <div class="tech-category"><strong>IDEs & Version Control:</strong> IntelliJ, VS Code, Eclipse, Zed, GIT, SVN</div>
+                    <div class="tech-category"><strong>Monitoring & Logging:</strong> VisualVM, OpenTelemetry, Dynatrace, ExtraHop, Grafana, Loki, Jaeger, Thanos, Prometheus</div>
+                    <div class="tech-category"><strong>SSO / Auth:</strong> RedHat SSO (Keycloak), CAS Server, AzureAD / EntraID</div>
+                </div>
+
+                <div class="sidebar-section">
+                    <div class="section-heading"><h3>Open-Source</h3></div>
+                    <ul class="sidebar-list">
+                        <li>Keycloak</li>
+                        <li>Apereo CAS</li>
+                        <li>Quarkus</li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-section">
+                    <div class="section-heading"><h3>Certifications</h3></div>
+                    <div class="education-item">
+                        <strong>Microsoft</strong><br>
+                        Programming in HTML5 with JavaScript and CSS3
+                    </div>
+                </div>
+
+                <div class="sidebar-section">
+                    <div class="section-heading"><h3>Education</h3></div>
+                    <div class="education-item">
+                        <div class="degree">SASTRA University, India</div>
+                        <div class="education-meta">B.Tech in Electronics & Communication Engineering (2012)</div>
+                        <ul>
+                            <li>9.11 GPA</li>
+                            <li>Dean's Lister</li>
+                            <li>Recipient of University and Central Government Scholarship</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="right-column">
                 <section>
                     <div class="section-heading">
                         <h2>Work History</h2>
@@ -575,69 +639,6 @@
                 </section>
             </div>
 
-            <div class="right-column">
-                <div class="sidebar-section">
-                    <div class="section-heading"><h3>Skills</h3></div>
-                    <ul class="sidebar-list">
-                        <li>Software Design & Development</li>
-                        <li>Agentic Coding</li>
-                        <li>Analytical Thinking</li>
-                        <li>Troubleshooting</li>
-                        <li>Problem Solving</li>
-                        <li>Continuous Learning</li>
-                        <li>Mentoring & Training</li>
-                        <li>Pair Programming</li>
-                        <li>Code Reviews</li>
-                    </ul>
-                </div>
-
-                <div class="sidebar-section">
-                    <div class="section-heading"><h3>Technology Summary</h3></div>
-                    <div class="tech-category"><strong>Programming Languages:</strong> Java, JavaScript, HTML5, CSS3</div>
-                    <div class="tech-category"><strong>AI:</strong> Github Copilot, Claude, OpenCode, Scion, MCP Servers/Clients, Google ADK</div>
-                    <div class="tech-category"><strong>Frameworks:</strong> Spring Boot (Spring WebMVC, Security, Data, LDAP), Quarkus, JPA, Hibernate, Hibernate Envers, AngularJS, jQuery</div>
-                    <div class="tech-category"><strong>Testing:</strong> JUnit, Mockito, Newman, JMeter, K6</div>
-                    <div class="tech-category"><strong>Build Tools:</strong> Maven, Webpack, GraalVM Native Image</div>
-                    <div class="tech-category"><strong>APIs:</strong> REST, SOAP, APISIX Gateway, Apigee</div>
-                    <div class="tech-category"><strong>Databases:</strong> MS SQL Server, DB2, MySQL, MongoDB, Redis, Elastic Search</div>
-                    <div class="tech-category"><strong>Event Streaming:</strong> Kafka (KSQL/Streams/Connect), Azure Event Hub</div>
-                    <div class="tech-category"><strong>Cloud Platforms:</strong> Azure, Google Cloud</div>
-                    <div class="tech-category"><strong>CI/CD & DevOps:</strong> Docker, Buildpack, Kubernetes, Helm, Kustomize, Skaffold, Flagger, Azure DevOps, Azure Pipelines, Function Apps, Key Vault, GKE, Google Logging/Bucket Store</div>
-                    <div class="tech-category"><strong>IDEs & Version Control:</strong> IntelliJ, VS Code, Eclipse, Zed, GIT, SVN</div>
-                    <div class="tech-category"><strong>Monitoring & Logging:</strong> VisualVM, OpenTelemetry, Dynatrace, ExtraHop, Grafana, Loki, Jaeger, Thanos, Prometheus</div>
-                    <div class="tech-category"><strong>SSO / Auth:</strong> RedHat SSO (Keycloak), CAS Server, AzureAD / EntraID</div>
-                </div>
-
-                <div class="sidebar-section">
-                    <div class="section-heading"><h3>Open-Source</h3></div>
-                    <ul class="sidebar-list">
-                        <li>Keycloak</li>
-                        <li>Apereo CAS</li>
-                        <li>Quarkus</li>
-                    </ul>
-                </div>
-
-                <div class="sidebar-section">
-                    <div class="section-heading"><h3>Certifications</h3></div>
-                    <div class="education-item">
-                        <strong>Microsoft</strong><br>
-                        Programming in HTML5 with JavaScript and CSS3
-                    </div>
-                </div>
-
-                <div class="sidebar-section">
-                    <div class="section-heading"><h3>Education</h3></div>
-                    <div class="education-item">
-                        <div class="degree">SASTRA University, India</div>
-                        <div class="education-meta">B.Tech in Electronics & Communication Engineering (2012)</div>
-                        <ul>
-                            <li>9.11 GPA</li>
-                            <li>Dean's Lister</li>
-                            <li>Recipient of University and Central Government Scholarship</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 
