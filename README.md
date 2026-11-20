@@ -1,73 +1,74 @@
 # Resume Theme & Architecture Guide
 
-This repository contains a standalone, zero-dependency HTML/CSS/JS resume designed for clean screen viewing, interactive role detail toggling, and reliable letter-size PDF/print export.
+A single-file, zero-dependency HTML/CSS/JS resume designed for clean screen reading, interactive role collapsing, and deterministic Letter-size PDF/print output.
 
 ---
 
-## 1. Visual Theme & Design Tokens
+## 1. Design Tokens (`:root`)
 
-Colors, spacing, and typography are centralized in `:root` custom properties and shared utility/semantic classes inside `<style>`:
+All colors are centralized as CSS custom properties at the top of `<style>`:
 
-* **Color Palette:**
-  * `--primary-color` (`#1a202c`): Headings, name title, company names, role titles, timeline dots, and links.
-  * `--text-color` (`#2d3748`): Primary body copy and bullet text.
-  * `--subtext-color` (`#4a5568`): Contact info, secondary metadata (such as degree subtitle), and toggle button text.
-  * `--muted-color` (`#718096`): Dates, tenures, and collapse chevrons.
-  * `--border-color` (`#cbd5e0`): Section dividers, timeline connector lines, and button borders.
-  * `--surface-bg` (`#f7fafc`): Subtle background for interactive controls.
-* **Typography:** System UI font stack (`-apple-system`, `BlinkMacSystemFont`, `"Segoe UI"`, `Roboto`, `Helvetica`, `Arial`, `sans-serif`) with `1.4` line-height for compact, scannable density.
-* **Container:** Centered card (`max-width: 900px`, `2rem` padding) on screen that flattens to `100%` width with `0` padding/shadow in `@media print` (`@page` margin `0.4in`, `letter`).
+| Variable | Value | Purpose |
+| :--- | :--- | :--- |
+| `--primary-color` | `#1a202c` | Name heading, section titles, company names, job titles, bold lead-ins, timeline dots, contact icons |
+| `--text-color` | `#2d3748` | Primary body copy and bullet points |
+| `--subtext-color` | `#4a5568` | Contact bar text, button labels, education metadata |
+| `--muted-color` | `#718096` | Tenure dates, role dates, timeline collapse chevrons |
+| `--border-color` | `#cbd5e0` | Section divider lines, vertical timeline track, button borders |
+| `--surface-bg` | `#f7fafc` | Subtle background fill for interactive controls |
 
----
-
-## 2. Structural Layout
-
-```text
-.resume-container
-├── <header>                  # Name + inline-flex contact row (email, phone, location, LinkedIn)
-└── .main-grid                # Desktop: CSS Grid (3fr 1fr) | Mobile (<=768px): 1fr
-    ├── .summary-section      # Full-width top section (spans 1 / -1)
-    ├── .left-column          # Work History grouped by company
-    │   └── .company-group    # Single-row company header + total tenure
-    │       └── .roles-timeline
-    │           └── .timeline-role  # 2-column grid: [14px timeline track] [minmax(0, 1fr) content]
-    └── .right-column         # Skills, Technology Summary, Open-Source, Certifications, Education
-```
-
-### Timeline Mechanics
-* Each `.timeline-role` uses a `14px` left track (`.timeline-track`) and a content column (`minmax(0, 1fr)`).
-* Each role renders a `7px` `.timeline-dot` aligned with the first line of the role header (`margin-top: 0.42rem`).
-* All roles except `:last-child` draw a vertical connector line via `.timeline-role:not(:last-child) .timeline-track::after`. Because the connector is scoped to non-last items, the timeline automatically terminates cleanly at the final role's dot regardless of bullet count or collapsed state.
-
-### Interactive Show/Hide Behavior
-* Clicking any `.role-header` toggles `.collapsed` on its parent `.timeline-role`, hiding `.role-details` and rotating `.role-chevron`.
-* The `#toggleAllBtn` button in the Work History heading calls `toggleAllDetails()` to collapse all expanded roles or expand all collapsed roles, then updates its label (`Hide Details` / `Show Details`).
-* In `@media print`, `.toggle-btn` and `.role-chevron` are hidden so printed output stays clean.
+* **Page Canvas:** `#edf2f7` on screen; overridden to `#ffffff` in `@media print`.
+* **Typography:** System UI font stack (`-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif`) with `1.4` base line-height.
 
 ---
 
-## 3. Print & Pagination Conventions
+## 2. Layout Architecture
 
-* **Screen vs. Print Grid:** Screen uses CSS Grid (`3fr 1fr`). Print switches `.main-grid` to `display: flex; flex-wrap: wrap; align-items: flex-start;` with `.left-column { flex: 3; min-width: 0; }` and `.right-column { flex: 1; min-width: 0; }` so columns flow naturally across page boundaries without grid-fragmentation gaps.
-* **Avoid Splitting Small Headers/Items:** Use `break-inside: avoid` and `break-after: avoid` on `.section-heading`, `.company-header`, and `.role-header`, and `break-inside: avoid` on individual list items (`.role-details li`), `.tech-category`, and `.education-item`.
-* **Avoid `break-inside: avoid` on Large Containers:** Do not place `break-inside: avoid` on `.sidebar-section` or multi-bullet role wrappers, as tall blocks can get pushed to the next page even when space is available.
-* **Explicit Page Breaks (`.page-break`):** Currently placed on the second company group (`Tata Consultancy Services Ltd.`). If you add or remove content and notice awkward whitespace, review whether `.page-break` is still needed.
+### Header & Contact Bar
+* Centered `<h1>` in uppercase with `1px` letter spacing.
+* `.contact-info` uses a wrapping Flexbox row (`gap: 0.4rem 0.9rem`).
+* Each `.contact-item` pairs a `14px × 14px` inline SVG icon with text or a link (`mailto:`, `tel:`, or external URL) and sets `white-space: nowrap` so icons never orphan from their labels.
+
+### Main Grid (`.main-grid`)
+* **Screen (`> 768px`):** CSS Grid (`grid-template-columns: 1fr 3fr; gap: 1.25rem;`).
+  * `.summary-section` spans both columns (`grid-column: 1 / -1`).
+  * `.left-column` holds sidebar sections (**Skills**, **Technology Summary**, **Open-Source**, **Certifications**, **Education**).
+  * `.right-column` holds **Work History**.
+* **Mobile (`@media screen and (max-width: 768px)`):**
+  * Scoped strictly to `screen` so it never triggers during print/PDF export (Letter printable width is `~739px`, which is `< 768px`).
+  * Switches `.main-grid` to `display: flex; flex-direction: column;` and reorders columns (`right-column` `order: 1`, `left-column` `order: 2`) so **Work History** appears first on mobile viewports, followed by the sidebar below it.
 
 ---
 
-## 4. Guidelines for Future Enhancements
+## 3. Work History Timeline & Interactivity
 
-1. **Adding a New Role Under an Existing Company:**
-   * Duplicate a `.timeline-role` block inside `.roles-timeline` in chronological/reverse-chronological order matching the rest of the section.
-   * Keep the `.timeline-track` + `.timeline-dot` structure intact; the `:not(:last-child)` rule will automatically handle connector lines.
-   * Keep `.role-header` on a single flex row with `white-space: nowrap` on `.job-date` so dates do not wrap awkwardly.
-2. **Adding a New Company:**
-   * Create a `.company-group` with a `.company-header` containing `.company-name` (left) and `.company-tenure` (right), followed by a `.roles-timeline`.
-   * Avoid repeating the company name inside individual role titles unless clarifying a client/division (e.g., `IT Analyst for Walmart`).
-3. **Adding Sidebar Sections or Tech Categories:**
-   * Wrap new sidebar blocks in `<div class="sidebar-section">` with `<div class="section-heading"><h3>Section Name</h3></div>`.
-   * Use `.tech-category` with `<strong>Label:</strong> Value` for grouped technologies so each item stays intact across page breaks.
-4. **Editing Styles:**
-   * Reuse CSS variables (`--primary-color`, `--text-color`, `--muted-color`, `--border-color`) instead of hardcoding hex values.
-   * Avoid inline `style="..."` attributes when a class already exists or can be added to `<style>`.
-   * Test both desktop/mobile browser views and **Print / Save as PDF** (`Letter`, `0.4in` margins) after layout or spacing changes.
+### Self-Adjusting Vertical Timeline
+Each role inside `.roles-timeline` uses a two-column grid (`.timeline-role`):
+* **Track (`14px`):** `.timeline-track` renders a `7px` circle (`.timeline-dot`). Every role except `:last-child` draws a `2px` vertical connector line via `::after` that stretches automatically to match the role's content height.
+* **Content (`minmax(0, 1fr)`):** `.timeline-content` holds `.role-header` and `.role-details`.
+
+### Collapsible Roles
+* Clicking `.role-header` toggles `.collapsed` on the parent `.timeline-role`, hiding `.role-details` and rotating `.role-chevron` (`-90deg`).
+* Clicking `#toggleAllBtn` (**Hide Details** / **Show Details**) collapses all roles if any are expanded, or expands all if all are collapsed, then syncs the button label.
+
+---
+
+## 4. Print & PDF Pagination Rules (`@media print`)
+
+* **Page Setup:** `@page { size: letter; margin: 0.4in; }` with `print-color-adjust: exact` on `body` so timeline dots and tracks render reliably.
+* **Flexbox Switch:** CSS Grid columns do not reliably split across pages in browser print engines. `@media print` switches `.main-grid` to `display: flex; flex-wrap: wrap; align-items: flex-start;` with `flex: 1` on `.left-column` and `flex: 3` on `.right-column` (`min-width: 0` on both).
+* **Natural Sidebar Flow:** Do **not** apply `break-inside: avoid` to `.sidebar-section`. Allowing long sidebar blocks (like **Technology Summary**) to break between individual `.tech-category` items prevents the entire section from jumping to page 2.
+* **Pagination Guards:**
+  * `break-inside: avoid` is applied only to atomic items: `.company-header`, `.role-header`, `.role-details li`, `.tech-category`, and `.education-item`.
+  * `break-after: avoid` is applied to `.section-heading`, `.company-header`, and `.role-header` so headings are never stranded at the bottom of a page.
+  * `.page-break` (`break-before: page`) is placed on the second `.company-group` to start it cleanly at the top of page 2.
+* **Print UI Cleanup:** `.toggle-btn` and `.role-chevron` are hidden (`display: none !important`), and `.role-title-wrap` resets `gap: 0`.
+
+---
+
+## 5. Guidelines for Future Edits
+
+* **Adding a Role to an Existing Company:** Copy a `.timeline-role` block inside `.roles-timeline`. The vertical connector line adjusts automatically; keep the oldest role last so `:not(:last-child)` stops the line at the bottom dot.
+* **Adding a New Company:** Copy a `.company-group` block. Add or remove the `.page-break` class depending on where you want page 2 to begin.
+* **Adding Technology Categories:** Wrap each category in `<div class="tech-category"><strong>Category:</strong> Items</div>` so print page breaks occur cleanly between categories rather than mid-line.
+* **Updating Media Queries:** Always keep mobile overrides inside `@media screen and (...)`—never bare `@media (...)`—to avoid breaking side-by-side print rendering.
